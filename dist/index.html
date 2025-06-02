@@ -1,24 +1,429 @@
-{
-	"name": "服务已启动",
-	"link": "https://musicfreepluginshub.ixingchen.top/",
-	"description": "☘️ 感谢使用",
-	"count": 7800,
-	"dates": [
-		"2016-09",
-		"2018-06",
-		"2019-07",
-		"2020-01",
-		"2022-03",
-		"2024-05"
-	],
-	"info": {
-		"scope": "/",
-		"noImplicitAny": true,
-		"noLib": false,
-		"extraLibs": [],
-		"semanticValidation": true,
-		"syntaxValidation": true,
-		"codeGenTarget": "ES5",
-		"moduleGenTarget": ""
-	}
-}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐自由插件中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4ade80',
+                        'primary-dark': '#22c55e',
+                        secondary: '#38bdf8',
+                        background: '#0f172a',
+                        surface: '#1e293b',
+                        'surface-light': '#334155'
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        .timeline-item:before {
+            content: "";
+            position: absolute;
+            top: 32px;
+            left: -8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #4ade80;
+            border: 2px solid #0f172a;
+            z-index: 10;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+        
+        #counter {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+<body class="bg-background text-white font-sans min-h-screen">
+    <!-- Background Elements -->
+    <div class="fixed top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+        <div class="absolute top-10 left-[10%] w-32 h-32 rounded-full bg-blue-500 blur-[100px]"></div>
+        <div class="absolute top-1/2 right-[20%] w-40 h-40 rounded-full bg-green-500 blur-[100px]"></div>
+        <div class="absolute bottom-20 left-[40%] w-24 h-24 rounded-full bg-purple-500 blur-[80px]"></div>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="max-w-6xl mx-auto px-4 py-8 relative z-10">
+        <!-- Header Section -->
+        <header class="py-10 text-center">
+            <div class="inline-block relative">
+                <div class="absolute -top-3 -right-3 animate-pulse-slow">
+                    <div class="bg-gradient-to-r from-green-400 to-blue-500 w-6 h-6 rounded-full"></div>
+                </div>
+                <h1 class="text-5xl font-bold text-primary">音乐自由插件中心</h1>
+            </div>
+            <p class="text-2xl mt-6 text-white/80 flex items-center justify-center">
+                <i class="fas fa-leaf mr-2 text-primary animate-float"></i>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-yellow-300">
+                    让音乐制作变得自由而简单
+                </span>
+            </p>
+            <div class="mt-6 max-w-lg mx-auto rounded-xl bg-surface border border-surface-light p-6 shadow-xl backdrop-blur-sm">
+                <p class="text-xl text-center text-gray-300">
+                    ☘️ 感谢使用我们的服务
+                </p>
+                <div class="mt-4 flex justify-center">
+                    <a href="https://musicfreepluginshub.ixingchen.top/" 
+                       target="_blank" 
+                       class="bg-gradient-to-r from-primary to-secondary hover:from-primary-dark hover:to-blue-500 text-white font-bold py-3 px-6 rounded-full transition-all transform hover:scale-105 shadow-lg shadow-green-500/30">
+                        访问官方网站
+                    </a>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Stats Section -->
+        <section class="py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-surface border border-surface-light rounded-2xl p-6 shadow-xl">
+                    <div class="flex flex-col items-center">
+                        <div class="text-6xl font-bold text-primary mb-2 animate-pulse-slow" id="counter">0</div>
+                        <p class="text-gray-300 text-xl">活跃用户</p>
+                    </div>
+                </div>
+                <div class="bg-surface border border-surface-light rounded-2xl p-6 shadow-xl">
+                    <div class="flex flex-col items-center">
+                        <div class="text-6xl font-bold text-blue-400 mb-2">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                        <p class="text-gray-300 text-xl">丰富插件资源</p>
+                    </div>
+                </div>
+                <div class="bg-surface border border-surface-light rounded-2xl p-6 shadow-xl">
+                    <div class="flex flex-col items-center">
+                        <div class="text-6xl font-bold text-yellow-400 mb-2">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 text-xl">免费开源服务</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Timeline Section -->
+        <section class="py-12">
+            <h2 class="text-3xl font-bold text-center mb-12">我们的<span class="text-primary">发展历程</span></h2>
+            
+            <div class="relative">
+                <!-- Vertical timeline bar -->
+                <div class="absolute left-8 top-4 bottom-4 w-1 bg-gradient-to-b from-green-500 to-blue-500 rounded-full md:left-1/2 md:-ml-0.5"></div>
+                
+                <div class="space-y-12 relative pl-16 md:pl-0 md:space-y-0">
+                    <!-- Timeline items will be inserted here -->
+                    <div class="relative timeline-item">
+                        <div class="bg-surface border border-surface-light rounded-xl p-6 shadow-lg md:w-5/12 md:ml-auto">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-bold text-primary">项目启动</h3>
+                                <div class="text-yellow-300">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                            </div>
+                            <p class="mt-4 text-gray-300">2016年9月，我们开启了音乐自由插件的探索</p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative timeline-item">
+                        <div class="bg-surface border border-surface-light rounded-xl p-6 shadow-lg md:w-5/12">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-bold text-primary">首次发布</h3>
+                                <div class="text-blue-300">
+                                    <i class="fas fa-bullhorn"></i>
+                                </div>
+                            </div>
+                            <p class="mt-4 text-gray-300">2018年6月，正式发布第一个插件合集包</p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative timeline-item">
+                        <div class="bg-surface border border-surface-light rounded-xl p-6 shadow-lg md:w-5/12 md:ml-auto">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-bold text-primary">社区突破</h3>
+                                <div class="text-green-300">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                            <p class="mt-4 text-gray-300">2019年7月，用户数突破1000人</p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative timeline-item">
+                        <div class="bg-surface border border-surface-light rounded-xl p-6 shadow-lg md:w-5/12">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-bold text-primary">架构升级</h3>
+                                <div class="text-purple-300">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                            </div>
+                            <p class="mt-4 text-gray-300">2020年1月，全面升级插件平台架构</p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative timeline-item">
+                        <div class="bg-surface border border-surface-light rounded-xl p-6 shadow-lg md:w-5/12 md:ml-auto">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-bold text-primary">平台上线</h3>
+                                <div class="text-blue-500">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                            </div>
+                            <p class="mt-4 text-gray-300">2022年3月，正式上线插件管理中心</p>
+                        </div>
+                    </div>
+                    
+                    <div class="relative timeline-item">
+                        <div class="bg-surface border border-surface-light rounded-xl p-6 shadow-lg md:w-5/12">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-bold text-primary">当前状态</h3>
+                                <div class="text-primary">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                            </div>
+                            <p class="mt-4 text-gray-300">2024年5月，服务已启动，稳定运行中</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Project Info Section -->
+        <section class="py-12">
+            <h2 class="text-3xl font-bold text-center mb-10">项目<span class="text-primary">技术信息</span></h2>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full bg-surface rounded-xl border border-surface-light shadow-xl">
+                    <thead>
+                        <tr class="border-b border-surface-light">
+                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-200 tracking-wider">配置项</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-200 tracking-wider">状态</th>
+                            <th class="px-6 py-3 text-left text-sm font-medium text-gray-200 tracking-wider">值</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-surface-light">
+                        <tr class="hover:bg-surface-light/50 transition-colors">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <span class="text-primary mr-2"><i class="fas fa-globe"></i></span>
+                                    <span>作用域</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-2 py-1 text-xs rounded-full bg-green-500/20 text-green-400">
+                                    已生效
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-gray-300">/</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-surface-light/50 transition-colors">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <span class="text-purple-500 mr-2"><i class="fas fa-ban"></i></span>
+                                    <span>禁止隐式Any</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-2 py-1 text-xs rounded-full bg-green-500/20 text-green-400">
+                                    已启用
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-gray-300">true</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-surface-light/50 transition-colors">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <span class="text-red-500 mr-2"><i class="fas fa-book"></i></span>
+                                    <span>禁止Lib检查</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-2 py-1 text-xs rounded-full bg-yellow-500/20 text-yellow-400">
+                                    已关闭
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-gray-300">false</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-surface-light/50 transition-colors">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <span class="text-blue-500 mr-2"><i class="fas fa-plus-circle"></i></span>
+                                    <span>额外Lib</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-2 py-1 text-xs rounded-full bg-gray-500/20 text-gray-400">
+                                    未配置
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-gray-300">[]</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-surface-light/50 transition-colors">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <span class="text-indigo-400 mr-2"><i class="fas fa-check-circle"></i></span>
+                                    <span>语义验证</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-2 py-1 text-xs rounded-full bg-green-500/20 text-green-400">
+                                    已启用
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-gray-300">true</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-surface-light/50 transition-colors">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <span class="text-pink-500 mr-2"><i class="fas fa-code"></i></span>
+                                    <span>语法验证</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-2 py-1 text-xs rounded-full bg-green-500/20 text-green-400">
+                                    已启用
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-gray-300">true</td>
+                        </tr>
+                        
+                        <tr class="hover:bg-surface-light/50 transition-colors">
+                            <td class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <span class="text-yellow-400 mr-2"><i class="fas fa-bullseye"></i></span>
+                                    <span>代码生成目标</span>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span class="px-2 py-1 text-xs rounded-full bg-green-500/20 text-green-400">
+                                    ES5
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-gray-300">ES5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="py-12 border-t border-surface-light mt-20">
+            <div class="flex flex-col items-center">
+                <div class="text-4xl mb-6 text-primary">
+                    <i class="fas fa-headphones-alt"></i>
+                </div>
+                <p class="text-center text-gray-400">
+                    © 2024 音乐自由插件中心 · 让音乐创作更自由
+                </p>
+                <p class="mt-2 text-center text-gray-500">
+                    服务已启动 · 感谢您的支持
+                </p>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" class="fixed right-6 bottom-6 w-12 h-12 rounded-full bg-primary shadow-lg shadow-green-500/30 hover:bg-green-400 transition-all flex items-center justify-center hidden">
+        <i class="fas fa-arrow-up text-white"></i>
+    </button>
+    
+    <script>
+        // Counter Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the counter element
+            const counter = document.getElementById('counter');
+            const target = 7800;
+            let count = 0;
+            const duration = 2000; // milliseconds
+            const increment = target / (duration / 16); // increment per frame (assuming 60fps)
+            
+            const updateCounter = () => {
+                count += increment;
+                if (count >= target) {
+                    count = target;
+                    counter.textContent = target.toLocaleString() + '+';
+                } else {
+                    counter.textContent = Math.floor(count).toLocaleString();
+                    requestAnimationFrame(updateCounter);
+                }
+            };
+            
+            // Start counting when element comes into view
+            const observer = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting) {
+                    requestAnimationFrame(updateCounter);
+                    observer.disconnect();
+                }
+            });
+            
+            observer.observe(counter);
+            
+            // Scroll to top button
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            
+            window.onscroll = function() {
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    scrollTopBtn.classList.remove('hidden');
+                } else {
+                    scrollTopBtn.classList.add('hidden');
+                }
+            };
+            
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Add "新" badge to the latest timeline item
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            if (timelineItems.length > 0) {
+                const lastItem = timelineItems[timelineItems.length - 1];
+                const badge = document.createElement('div');
+                badge.innerHTML = '<span class="bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full absolute top-0 right-0 transform translate-x-1 -translate-y-1">NEW</span>';
+                lastItem.querySelector('div').appendChild(badge);
+            }
+        });
+    </script>
+</body>
+</html>
