@@ -23,6 +23,11 @@
       "name": "W音乐",
       "url": "https://raw.githubusercontent.com/ThomasBy2025/musicfree/refs/heads/main/plugins/wy.js",
       "version": "0.2.3"
+    },
+    {
+      "name": "pyncmd",
+      "url": "https://gh.imixc.top/github.com/IIXINGCHEN/IIXINGCHEN.github.io/blob/main/pyncmd.js",
+      "version": "0.2.3"
     }
   ],
   "dead_singles_backup": [
