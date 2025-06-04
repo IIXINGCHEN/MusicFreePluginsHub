@@ -5,6 +5,7 @@
     "https://gitee.com/kevinr/tvbox/raw/master/musicfree/plugins.json",
     "https://gitee.com/xujin621/soul-yin-download-sound/attach_files/2093957/download/music.json",
     "http://music.haitangw.net/元力音乐.json",
+    "https://gh.imixc.top/github.com/IIXINGCHEN/IIXINGCHEN.github.io/blob/main/MusicFree/unm.json",
     "https://13413.kstore.space/musicfree.json"
   ],
   "dead_sources_backup": [
@@ -23,16 +24,6 @@
       "name": "W音乐",
       "url": "https://raw.githubusercontent.com/ThomasBy2025/musicfree/refs/heads/main/plugins/wy.js",
       "version": "0.2.3"
-    },
-    {
-      "name": "pyncmd",
-      "url": "https://gh.imixc.top/github.com/IIXINGCHEN/IIXINGCHEN.github.io/blob/main/MusicFree/pyncmd.js",
-      "version": "1.0.0"
-    },
-    {
-      "name": "unm",
-      "url": "https://gh.imixc.top/github.com/IIXINGCHEN/IIXINGCHEN.github.io/blob/main/MusicFree/unm.js",
-      "version": "1.0.0"
     }
   ],
   "dead_singles_backup": [
