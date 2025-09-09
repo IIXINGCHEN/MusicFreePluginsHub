@@ -162,16 +162,6 @@
       "version": "0.1.0"
     },
     {
-      "name": "pyncmd",
-      "url": "https://gh.imixc.top/github.com/IIXINGCHEN/IIXINGCHEN.github.io/blob/main/MusicFree/pyncmd.js",
-      "version": "0.1.0"
-    },
-    {
-      "name": "unm",
-      "url": "https://gh.imixc.top/github.com/IIXINGCHEN/IIXINGCHEN.github.io/blob/main/MusicFree/unm.js",
-      "version": "0.1.0"
-    },
-    {
       "name": "W电台_1",
       "url": "https://cdn.jsdelivr.net/gh/GuGuMur/MusicFreePlugin-NeteaseRadio@master/dist/plugin.js",
       "version": "0.0.2"
